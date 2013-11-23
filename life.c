@@ -1,31 +1,33 @@
 #include <stdio.h>
 #include <unistd.h>
 
+typedef void I;
 #define ALIVE 1
 int knowledge = 0;
-#define say(english) {printf("%s\n",english);fflush(stdout);}
+#define say(english,data) {printf(english + "\n",data);fflush(stdout);}
+#define ask(english) {printf(english + "\n");fflush(stdout);}
 #define think_of(idea) {scanf("%s",idea);}
 typedef char* idea;
 
-void learn(idea){
-  say("Today I am learning");
+I learn(idea project){
+  say("Today I am learning %s",project);
   knowledge++;
 }
 
-void wake_up(){
-  say("What shall I learn today?");
+I wake_up(){
+  ask("What shall I learn today?");
   idea project;
   think_of(project);
   learn(project);
 }
 
-void prepare_for_bed(){
-  say(" ");
+I prepare_for_bed(){
+  //say(" ");
 }
 
 int main(){
-  say("Sleeping...");
-  bed: sleep(8);
+  say("Sleeping for %d a night...",8);
+  bed: //sleep(8);
   wake_up();
 
   goto lecture;
